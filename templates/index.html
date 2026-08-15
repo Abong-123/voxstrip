@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vocal Strip — Instrumental Extractor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <main class="stage">
+    <header class="stage__header">
+      <span class="eyebrow">SIGNAL CHAIN</span>
+      <h1 class="title">Vocal Strip</h1>
+      <p class="subtitle">Drop a track. Pull the vocal out. Keep the instrumental.</p>
+    </header>
+
+    <div class="rack">
+
+      <!-- Chain stage indicator -->
+      <div class="chain">
+        <div class="chain__step" data-step="input">
+          <span class="chain__dot"></span>
+          <span class="chain__label">Input</span>
+        </div>
+        <div class="chain__wire"></div>
+        <div class="chain__step" data-step="separate">
+          <span class="chain__dot"></span>
+          <span class="chain__label">Separate</span>
+        </div>
+        <div class="chain__wire"></div>
+        <div class="chain__step" data-step="output">
+          <span class="chain__dot"></span>
+          <span class="chain__label">Output</span>
+        </div>
+      </div>
+
+      <!-- Dropzone -->
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="fileInput" accept=".mp3,.wav,.flac,.m4a,.ogg" hidden />
+        <div class="dropzone__icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3v12m0-12 4 4m-4-4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="dropzone__text">Drag a song here, or <span class="dropzone__browse">browse</span></p>
+        <p class="dropzone__hint">MP3 · WAV · FLAC · M4A · OGG</p>
+      </div>
+
+      <!-- Selected file info -->
+      <div id="fileInfo" class="file-info hidden">
+        <div class="file-info__meta">
+          <span class="file-info__name" id="fileName">—</span>
+          <span class="file-info__id" id="fileId"></span>
+        </div>
+        <div class="eq" id="eq" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- Status line -->
+      <p id="statusLine" class="status-line hidden"></p>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button id="uploadBtn" class="btn btn--primary hidden">Upload track</button>
+        <button id="filterBtn" class="btn btn--accent hidden">Strip vocals</button>
+        <a id="downloadBtn" class="btn btn--outline hidden" href="#" download>Download instrumental</a>
+        <button id="resetBtn" class="btn btn--ghost hidden">Start over</button>
+      </div>
+
+    </div>
+
+    <footer class="stage__footer">
+      <span>Separation model: htdemucs — running locally on CPU</span>
+    </footer>
+  </main>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
